@@ -43,9 +43,10 @@ func (s *ReportService) buildReports(matches []models.Match) []resp.MatchReportR
 	reports := make([]resp.MatchReportResponse, 0, len(matches))
 	for _, match := range matches {
 		status := reportStatus(match)
-		if status == "HOME_WIN" {
+		switch status {
+		case "HOME_WIN":
 			wins[match.HomeTeamID]++
-		} else if status == "AWAY_WIN" {
+		case "AWAY_WIN":
 			wins[match.AwayTeamID]++
 		}
 		reports = append(reports, resp.MatchReportResponse{

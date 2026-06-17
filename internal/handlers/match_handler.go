@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/00limited/football-api/internal/dto/request"
+	"github.com/00limited/football-api/internal/dto/response"
 	"github.com/00limited/football-api/internal/models"
 	"github.com/00limited/football-api/internal/services"
 	"github.com/gin-gonic/gin"
@@ -23,7 +24,32 @@ func (h *MatchHandler) List(c *gin.Context) {
 		fail(c, http.StatusInternalServerError, "failed to list matches", err.Error())
 		return
 	}
-	success(c, http.StatusOK, "matches fetched successfully", matches)
+
+	var matchResponses []response.MatchResponse
+	for _, match := range matches {
+		matchResponses = append(matchResponses, response.MatchResponse{
+			MatchID:   match.ID,
+			MatchDate: match.MatchDate.Format("2006-01-02"),
+			MatchTime: match.MatchTime,
+			Status:    match.Status,
+			HomeTeam: response.TeamResponse{
+				TeamID:  match.HomeTeam.ID,
+				Name:    match.HomeTeam.Name,
+				City:    match.HomeTeam.City,
+				LogoURL: match.HomeTeam.LogoURL,
+				Address: match.HomeTeam.Address,
+			},
+			AwayTeam: response.TeamResponse{
+				TeamID:  match.AwayTeam.ID,
+				Name:    match.AwayTeam.Name,
+				City:    match.AwayTeam.City,
+				LogoURL: match.AwayTeam.LogoURL,
+				Address: match.AwayTeam.Address,
+			},
+		})
+	}
+
+	success(c, http.StatusOK, "matches fetched successfully", matchResponses)
 }
 
 func (h *MatchHandler) Create(c *gin.Context) {
@@ -46,7 +72,27 @@ func (h *MatchHandler) Create(c *gin.Context) {
 		fail(c, http.StatusBadRequest, "failed to create match", err.Error())
 		return
 	}
-	success(c, http.StatusCreated, "match created successfully", match)
+	var matchResponse = response.MatchResponse{
+		MatchID:   match.ID,
+		MatchDate: match.MatchDate.Format("2006-01-02"),
+		MatchTime: match.MatchTime,
+		Status:    match.Status,
+		HomeTeam: response.TeamResponse{
+			TeamID:  match.HomeTeam.ID,
+			Name:    match.HomeTeam.Name,
+			City:    match.HomeTeam.City,
+			LogoURL: match.HomeTeam.LogoURL,
+			Address: match.HomeTeam.Address,
+		},
+		AwayTeam: response.TeamResponse{
+			TeamID:  match.AwayTeam.ID,
+			Name:    match.AwayTeam.Name,
+			City:    match.AwayTeam.City,
+			LogoURL: match.AwayTeam.LogoURL,
+			Address: match.AwayTeam.Address,
+		},
+	}
+	success(c, http.StatusCreated, "match created successfully", matchResponse)
 }
 
 func (h *MatchHandler) Get(c *gin.Context) {
@@ -59,7 +105,27 @@ func (h *MatchHandler) Get(c *gin.Context) {
 		fail(c, http.StatusNotFound, "failed to get match", err.Error())
 		return
 	}
-	success(c, http.StatusOK, "match fetched successfully", match)
+	var matchResponse = response.MatchResponse{
+		MatchID:   match.ID,
+		MatchDate: match.MatchDate.Format("2006-01-02"),
+		MatchTime: match.MatchTime,
+		Status:    match.Status,
+		HomeTeam: response.TeamResponse{
+			TeamID:  match.HomeTeam.ID,
+			Name:    match.HomeTeam.Name,
+			City:    match.HomeTeam.City,
+			LogoURL: match.HomeTeam.LogoURL,
+			Address: match.HomeTeam.Address,
+		},
+		AwayTeam: response.TeamResponse{
+			TeamID:  match.AwayTeam.ID,
+			Name:    match.AwayTeam.Name,
+			City:    match.AwayTeam.City,
+			LogoURL: match.AwayTeam.LogoURL,
+			Address: match.AwayTeam.Address,
+		},
+	}
+	success(c, http.StatusOK, "match fetched successfully", matchResponse)
 }
 
 func (h *MatchHandler) Update(c *gin.Context) {

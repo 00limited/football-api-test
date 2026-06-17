@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/00limited/football-api/internal/dto/request"
+	"github.com/00limited/football-api/internal/dto/response"
 	"github.com/00limited/football-api/internal/models"
 	"github.com/00limited/football-api/internal/services"
 	"github.com/gin-gonic/gin"
@@ -29,7 +30,18 @@ func (h *TeamHandler) List(c *gin.Context) {
 		fail(c, http.StatusInternalServerError, "failed to list teams", err.Error())
 		return
 	}
-	success(c, http.StatusOK, "teams fetched successfully", teams)
+	var teamResponses []response.TeamResponse
+	for _, team := range teams {
+		teamResponses = append(teamResponses, response.TeamResponse{
+			TeamID:      team.ID,
+			Name:        team.Name,
+			FoundedYear: team.FoundedYear,
+			Address:     team.Address,
+			City:        team.City,
+			LogoURL:     team.LogoURL,
+		})
+	}
+	success(c, http.StatusOK, "teams fetched successfully", teamResponses)
 }
 
 func (h *TeamHandler) Create(c *gin.Context) {
@@ -64,7 +76,26 @@ func (h *TeamHandler) Get(c *gin.Context) {
 		fail(c, status, "failed to get team", err.Error())
 		return
 	}
-	success(c, http.StatusOK, "team fetched successfully", team)
+	var playerResponses []response.PlayerResponse
+	for _, player := range team.Players {
+		playerResponses = append(playerResponses, response.PlayerResponse{
+			PlayerID:  player.ID,
+			Name:      player.Name,
+			Position:  player.Position,
+			JerseyNum: player.JerseyNumber,
+		})
+	}
+	var teamResponse = response.TeamDetailResponse{
+		TeamID:      team.ID,
+		Name:        team.Name,
+		FoundedYear: team.FoundedYear,
+		Address:     team.Address,
+		City:        team.City,
+		LogoURL:     team.LogoURL,
+		Players:     playerResponses,
+	}
+
+	success(c, http.StatusOK, "team fetched successfully", teamResponse)
 }
 
 func (h *TeamHandler) Update(c *gin.Context) {

@@ -27,7 +27,7 @@ func (r *TeamRepository) List() ([]models.Team, error) {
 
 func (r *TeamRepository) GetByID(id uint) (*models.Team, error) {
 	var team models.Team
-	if err := r.db.First(&team, id).Error; err != nil {
+	if err := r.db.Preload("Players").First(&team, id).Error; err != nil {
 		return nil, err
 	}
 	return &team, nil

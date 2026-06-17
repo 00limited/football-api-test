@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/00limited/football-api/internal/dto/request"
+	"github.com/00limited/football-api/internal/dto/response"
 	"github.com/00limited/football-api/internal/models"
 	"github.com/00limited/football-api/internal/services"
 	"github.com/gin-gonic/gin"
@@ -28,7 +29,16 @@ func (h *PlayerHandler) ListByTeam(c *gin.Context) {
 		fail(c, http.StatusBadRequest, "failed to list players", err.Error())
 		return
 	}
-	success(c, http.StatusOK, "players fetched successfully", players)
+	var playerResponses []response.PlayerResponse
+	for _, player := range players {
+		playerResponses = append(playerResponses, response.PlayerResponse{
+			PlayerID:  player.ID,
+			Name:      player.Name,
+			Position:  player.Position,
+			JerseyNum: player.JerseyNumber,
+		})
+	}
+	success(c, http.StatusOK, "players fetched successfully", playerResponses)
 }
 
 func (h *PlayerHandler) Create(c *gin.Context) {
@@ -50,7 +60,13 @@ func (h *PlayerHandler) Create(c *gin.Context) {
 		fail(c, http.StatusBadRequest, "failed to create player", err.Error())
 		return
 	}
-	success(c, http.StatusCreated, "player created successfully", player)
+	var playerResponse = response.PlayerResponse{
+		PlayerID:  player.ID,
+		Name:      player.Name,
+		Position:  player.Position,
+		JerseyNum: player.JerseyNumber,
+	}
+	success(c, http.StatusCreated, "player created successfully", playerResponse)
 }
 
 func (h *PlayerHandler) Get(c *gin.Context) {
@@ -63,7 +79,21 @@ func (h *PlayerHandler) Get(c *gin.Context) {
 		fail(c, http.StatusNotFound, "failed to get player", err.Error())
 		return
 	}
-	success(c, http.StatusOK, "player fetched successfully", player)
+	var playerResponse = response.PlayerDetailResponse{
+		PlayerID:  player.ID,
+		Name:      player.Name,
+		Position:  player.Position,
+		JerseyNum: player.JerseyNumber,
+		Height:    player.HeightCM.InexactFloat64(),
+		Weight:    player.WeightKG.InexactFloat64(),
+		Team: response.TeamResponse{
+			TeamID:  player.Team.ID,
+			Name:    player.Team.Name,
+			City:    player.Team.City,
+			LogoURL: player.Team.LogoURL,
+		},
+	}
+	success(c, http.StatusOK, "player fetched successfully", playerResponse)
 }
 
 func (h *PlayerHandler) Update(c *gin.Context) {
@@ -94,7 +124,13 @@ func (h *PlayerHandler) Update(c *gin.Context) {
 		fail(c, http.StatusBadRequest, "failed to update player", err.Error())
 		return
 	}
-	success(c, http.StatusOK, "player updated successfully", player)
+	var playerResponse = response.PlayerResponse{
+		PlayerID:  player.ID,
+		Name:      player.Name,
+		Position:  player.Position,
+		JerseyNum: player.JerseyNumber,
+	}
+	success(c, http.StatusOK, "player updated successfully", playerResponse)
 }
 
 func (h *PlayerHandler) Delete(c *gin.Context) {

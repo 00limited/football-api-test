@@ -27,7 +27,7 @@ func (r *MatchRepository) List() ([]models.Match, error) {
 
 func (r *MatchRepository) GetByID(id uint) (*models.Match, error) {
 	var match models.Match
-	if err := r.db.Preload("HomeTeam").Preload("AwayTeam").First(&match, id).Error; err != nil {
+	if err := r.db.Preload("HomeTeam").Preload("AwayTeam").Preload("Result").First(&match, id).Error; err != nil {
 		return nil, err
 	}
 	return &match, nil

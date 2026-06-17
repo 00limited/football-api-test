@@ -30,6 +30,8 @@ func (r *ResultRepository) GetByMatchID(matchID uint) (*models.MatchResult, erro
 		Preload("Goals", func(db *gorm.DB) *gorm.DB { return db.Order("goal_minute asc, id asc") }).
 		Preload("Goals.Player").
 		Preload("Goals.Team").
+		Preload("Match.HomeTeam").
+		Preload("Match.AwayTeam").
 		First(&result, "match_id = ?", matchID).Error; err != nil {
 		return nil, err
 	}
