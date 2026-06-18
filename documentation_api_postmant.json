@@ -1,0 +1,578 @@
+{
+  "info": {
+    "_postman_id": "3fd5eac6-7d1c-40fb-b522-3ad16fe56d5a",
+    "name": "football api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "23208119"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin1234\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/auth/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "auth", "register"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin1234\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/auth/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "auth", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create teams",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDc1MjYsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.PLiAzTcfWu_U-tGl-VY3nqvi0sHzxavhkTMphzuU1uo",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Persebaya Surabaya\",\r\n    \"founded_year\": 1927,\r\n    \"address\": \"Jl. Stadion No.1\",\r\n    \"city\": \"Surabaya\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/teams",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "teams"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update logo team",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDc1MjYsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.PLiAzTcfWu_U-tGl-VY3nqvi0sHzxavhkTMphzuU1uo",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "logo",
+              "type": "file",
+              "uuid": "00f85270-6080-4f16-935e-5ac608fd094c",
+              "src": "/D:/Dumbways Class/batch2/FinalTask/Integration/client/src/assets/img3.png"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/teams/:id/logo",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "teams", ":id", "logo"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get teams",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/teams",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "teams"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get teams detail",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/teams",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "teams"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get player detail",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/teams",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "teams"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get match",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/matches",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "matches"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get match detail",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/matches",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "matches"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get match result detail",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/matches",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "matches"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get Report Detail",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/matches",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "matches"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "add player",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Asep Junior\",\r\n    \"height_cm\": 175.5,\r\n    \"weight_kg\": 68.0,\r\n    \"position\": \"GOALKEEPER\",\r\n    \"jersey_number\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/teams/1/players",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "teams", "1", "players"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "add match",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"match_date\": \"2026-07-20\",\r\n    \"match_time\": \"15:04\",\r\n    \"home_team_id\": 1,\r\n    \"away_team_id\": 2\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/matches",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "matches"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Match Result",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"goals\": [\r\n        {\r\n            \"player_id\": 1,\r\n            \"team_id\": 1,\r\n            \"goal_minute\": 23\r\n        },\r\n        {\r\n            \"player_id\": 2,\r\n            \"team_id\": 1,\r\n            \"goal_minute\": 67\r\n        }\r\n    ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/matches/:id/result",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "matches", ":id", "result"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Report",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/reports/matches",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "reports", "matches"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update player",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Budi Santoso junior\",\r\n    \"height_cm\": 175.5,\r\n    \"weight_kg\": 68.0,\r\n    \"position\": \"MIDFIELDER\",\r\n    \"jersey_number\": 10\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/players/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "players", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update team",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Budi Santoso junior\",\r\n    \"height_cm\": 175.5,\r\n    \"weight_kg\": 68.0,\r\n    \"position\": \"MIDFIELDER\",\r\n    \"jersey_number\": 10\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/players/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "players", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update match",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Budi Santoso junior\",\r\n    \"height_cm\": 175.5,\r\n    \"weight_kg\": 68.0,\r\n    \"position\": \"MIDFIELDER\",\r\n    \"jersey_number\": 10\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/players/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "players", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete player",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODE3MDY0NDgsInN1YiI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.HxSvFErP-gC6a4cP9C-oQJseG9UAcQDq_5WB9qhnt0E",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Budi Santoso junior\",\r\n    \"height_cm\": 175.5,\r\n    \"weight_kg\": 68.0,\r\n    \"position\": \"MIDFIELDER\",\r\n    \"jersey_number\": 10\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/players/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "players", "1"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
