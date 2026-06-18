@@ -84,8 +84,8 @@ football-api/
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/[username]/football-api.git
-cd football-api
+git clone https://github.com/00limited/football-api-test.git
+cd football-api-test
 ```
 
 ### 2. Install Dependencies
@@ -131,16 +131,6 @@ go run cmd/main.go
 ```
 
 Aplikasi berjalan di: `http://localhost:8080`
-
----
-
-## 🐳 Menjalankan dengan Docker (Opsional)
-
-```bash
-docker-compose up --build
-```
-
-Akan menjalankan dua service sekaligus: **app** (Go) dan **db** (PostgreSQL).
 
 ---
 
